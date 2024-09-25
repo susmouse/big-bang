@@ -22,8 +22,8 @@
                 right: 20px;
                 top: 50%;
                 transform: translateY(-50%);
-                background-color: rgba(255, 255, 255, 0.8);
-                color: #333;
+                background-color: rgba(217, 12, 12, 0.8);
+                color: #FFF;
                 border: none;
                 padding: 10px 15px;
                 border-radius: 20px;
@@ -35,7 +35,7 @@
                 z-index: 9999;
             }
             .word-explosion-button:hover {
-                background-color: rgba(255, 255, 255, 1);
+                background-color: rgba(217, 12, 12, 0.5);
                 box-shadow: 0 4px 20px rgba(0,0,0,0.15);
             }
             .word-explosion-popup {
