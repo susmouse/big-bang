@@ -165,7 +165,7 @@
     navigator.clipboard
       .writeText(selectedWords)
       .then(() => {
-        alert("已复制选中的文本！");
+        alert(`已复制：${selectedWords}！`);
       })
       .catch((err) => {
         console.error("复制失败: ", err);
