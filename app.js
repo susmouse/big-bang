@@ -5,6 +5,7 @@
 // @version      1
 // @description  仿照锤子的大爆炸，使用本地分词逻辑对选中文本进行分词
 // @match        *://*/*
+// @license      MIT
 // @icon         https://s2.loli.net/2024/09/25/6PxlMHA7EZVqwsJ.png
 // ==/UserScript==
 
