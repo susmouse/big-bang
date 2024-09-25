@@ -104,12 +104,7 @@
 
   // 显示按钮
   function showButton() {
-    const selection = window.getSelection();
-    const range = selection.getRangeAt(0);
-    const rect = range.getBoundingClientRect();
     button.style.display = "block";
-    button.style.left = `${rect.left + window.scrollX}px`;
-    button.style.top = `${rect.bottom + window.scrollY}px`;
   }
 
   // 隐藏按钮
