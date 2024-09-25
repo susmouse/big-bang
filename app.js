@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         锤子风格文本分词大爆炸
+// @name         FLUENT风格文本分词大爆炸
 // @namespace    http://tampermonkey.net/
-// @version      0.2
-// @description  选中文本后在旁边添加一个按钮，点击后显示分词结果，可以选择单词并复制
+// @version      0.3
+// @description  选中文本后在右侧添加一个按钮，点击后显示分词结果，可以选择单词并复制（FLUENT风格）
 // @match        *://*/*
 // @grant        none
 // ==/UserScript==
@@ -13,20 +13,91 @@
   let button = null;
   let popupContainer = null;
 
+  // 创建样式
+  function createStyles() {
+    const style = document.createElement("style");
+    style.textContent = `
+            .word-explosion-button {
+                position: fixed;
+                right: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+                background-color: rgba(255, 255, 255, 0.8);
+                color: #333;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 20px;
+                cursor: pointer;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 14px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                transition: all 0.3s ease;
+                z-index: 9999;
+            }
+            .word-explosion-button:hover {
+                background-color: rgba(255, 255, 255, 1);
+                box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            }
+            .word-explosion-popup {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: rgba(240, 240, 240, 0.8);
+                backdrop-filter: blur(10px);
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                z-index: 10000;
+                max-width: 80%;
+                max-height: 80%;
+                overflow: auto;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+            .word-explosion-word {
+                margin: 5px;
+                padding: 8px 15px;
+                background-color: rgba(255, 255, 255, 0.5);
+                border: none;
+                border-radius: 20px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                font-size: 14px;
+            }
+            .word-explosion-word.selected {
+                background-color: #0078D4;
+                color: white;
+            }
+            .word-explosion-copy {
+                display: block;
+                margin-top: 15px;
+                padding: 10px 20px;
+                background-color: #0078D4;
+                color: white;
+                border: none;
+                border-radius: 20px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: all 0.3s ease;
+            }
+            .word-explosion-copy:hover {
+                background-color: #106EBE;
+            }
+        `;
+    document.head.appendChild(style);
+  }
+
   // 创建按钮
   function createButton() {
     button = document.createElement("button");
-    button.textContent = "分词大爆炸";
-    button.style.position = "absolute";
-    button.style.zIndex = "9999";
+    button.textContent = "大爆炸";
+    button.className = "word-explosion-button";
     button.style.display = "none";
     document.body.appendChild(button);
   }
 
   // 显示按钮
-  function showButton(x, y) {
-    button.style.left = `${x}px`;
-    button.style.top = `${y}px`;
+  function showButton() {
     button.style.display = "block";
   }
 
@@ -38,17 +109,7 @@
   // 创建弹出窗口
   function createPopup() {
     popupContainer = document.createElement("div");
-    popupContainer.style.position = "fixed";
-    popupContainer.style.top = "50%";
-    popupContainer.style.left = "50%";
-    popupContainer.style.transform = "translate(-50%, -50%)";
-    popupContainer.style.backgroundColor = "white";
-    popupContainer.style.padding = "20px";
-    popupContainer.style.boxShadow = "0 0 10px rgba(0,0,0,0.5)";
-    popupContainer.style.zIndex = "10000";
-    popupContainer.style.maxWidth = "80%";
-    popupContainer.style.maxHeight = "80%";
-    popupContainer.style.overflow = "auto";
+    popupContainer.className = "word-explosion-popup";
     popupContainer.style.display = "none";
     document.body.appendChild(popupContainer);
   }
@@ -59,8 +120,7 @@
     words.forEach((word) => {
       const wordButton = document.createElement("button");
       wordButton.textContent = word;
-      wordButton.style.margin = "5px";
-      wordButton.style.padding = "5px 10px";
+      wordButton.className = "word-explosion-word";
       wordButton.addEventListener("click", () =>
         wordButton.classList.toggle("selected")
       );
@@ -69,8 +129,7 @@
 
     const copyButton = document.createElement("button");
     copyButton.textContent = "复制选中文本";
-    copyButton.style.display = "block";
-    copyButton.style.marginTop = "10px";
+    copyButton.className = "word-explosion-copy";
     copyButton.addEventListener("click", copySelectedWords);
     popupContainer.appendChild(copyButton);
 
@@ -90,7 +149,7 @@
   // 复制选中的单词
   function copySelectedWords() {
     const selectedWords = Array.from(
-      popupContainer.querySelectorAll("button.selected")
+      popupContainer.querySelectorAll(".word-explosion-word.selected")
     )
       .map((button) => button.textContent)
       .join(" ");
@@ -108,9 +167,7 @@
   document.addEventListener("selectionchange", function () {
     const selection = window.getSelection();
     if (selection.toString().trim() !== "") {
-      const range = selection.getRangeAt(0);
-      const rect = range.getBoundingClientRect();
-      showButton(rect.right + window.scrollX, rect.top + window.scrollY);
+      showButton();
     } else {
       hideButton();
     }
@@ -126,6 +183,7 @@
   }
 
   // 初始化
+  createStyles();
   createButton();
   createPopup();
   button.addEventListener("click", onButtonClick);
