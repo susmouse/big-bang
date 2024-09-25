@@ -22,20 +22,24 @@
       style.textContent = `
               .word-explosion-button {
                   position: absolute; /* 修改为 absolute，方便根据选中区域定位 */
-                  background-color: rgba(217, 12, 12, 0.8);
-                  color: #FFF;
+                  background-color: rgba(217, 12, 12, 0.4);
+                  color: #000;
                   border: none;
-                  padding: 10px 15px;
-                  border-radius: 20px;
+                  border-radius: 50%;
                   cursor: pointer;
                   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                  font-size: 14px;
+                  font-size: 16px;
                   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
                   transition: all 0.3s ease;
                   z-index: 9999;
+                  width: 30px; /* 设置按钮的宽度 */
+                  height: 30px; /* 设置按钮的高度 */
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
               }
               .word-explosion-button:hover {
-                  background-color: rgba(217, 12, 12, 0.5);
+                  background-color: rgba(217, 12, 12, 0.75);
                   box-shadow: 0 4px 20px rgba(0,0,0,0.15);
               }
               .word-explosion-popup {
@@ -99,7 +103,7 @@
      */
     function createButton() {
       button = document.createElement("button");
-      button.textContent = "大爆炸";
+      button.textContent = "💥";
       button.className = "word-explosion-button";
       button.style.display = "none";
       document.body.appendChild(button);
