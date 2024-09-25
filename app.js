@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         文本大爆炸
 // @namespace    http://tampermonkey.net/
+// @author       突徒土兔
 // @version      1
 // @description  仿照锤子的大爆炸，使用本地分词逻辑对选中文本进行分词
 // @match        *://*/*
-// @grant        none
+// @icon         https://s2.loli.net/2024/09/25/6PxlMHA7EZVqwsJ.png
 // ==/UserScript==
 
 (function () {
