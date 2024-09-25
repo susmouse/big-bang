@@ -13,7 +13,10 @@
     let button = null;
     let popupContainer = null;
   
-    // 创建样式
+    /**
+     * 创建样式
+     * 该函数用于创建并插入样式表，定义按钮和弹出窗口的样式。
+     */
     function createStyles() {
       const style = document.createElement("style");
       style.textContent = `
@@ -90,7 +93,10 @@
       document.head.appendChild(style);
     }
   
-    // 创建按钮
+    /**
+     * 创建按钮
+     * 该函数用于创建并插入一个按钮，用于触发大爆炸功能。
+     */
     function createButton() {
       button = document.createElement("button");
       button.textContent = "大爆炸";
@@ -99,7 +105,10 @@
       document.body.appendChild(button);
     }
   
-    // 显示按钮并将其定位到选中文本旁边
+    /**
+     * 显示按钮并将其定位到选中文本旁边
+     * 该函数用于在选中文本时显示按钮，并将其定位到选中文本的旁边。
+     */
     function showButtonAtSelection() {
       const selection = window.getSelection();
       if (selection.rangeCount > 0) {
@@ -111,12 +120,18 @@
       }
     }
   
-    // 隐藏按钮
+    /**
+     * 隐藏按钮
+     * 该函数用于隐藏按钮。
+     */
     function hideButton() {
       button.style.display = "none";
     }
   
-    // 创建弹出窗口
+    /**
+     * 创建弹出窗口
+     * 该函数用于创建并插入一个弹出窗口，用于显示分词结果。
+     */
     function createPopup() {
       popupContainer = document.createElement("div");
       popupContainer.className = "word-explosion-popup";
@@ -124,7 +139,11 @@
       document.body.appendChild(popupContainer);
     }
   
-    // 显示弹出窗口
+    /**
+     * 显示弹出窗口
+     * 该函数用于显示弹出窗口，并填充分词结果。
+     * @param {Array} words - 分词结果数组
+     */
     function showPopup(words) {
       popupContainer.innerHTML = "";
       words.forEach((word) => {
@@ -147,19 +166,30 @@
       popupContainer.style.display = "flex";
     }
   
-    // 隐藏弹出窗口
+    /**
+     * 隐藏弹出窗口
+     * 该函数用于隐藏弹出窗口。
+     */
     function hidePopup() {
       popupContainer.style.display = "none";
     }
   
-    // 改进的分词函数
+    /**
+     * 改进的分词函数
+     * 该函数用于对输入的文本进行分词。
+     * @param {string} text - 需要分词的文本
+     * @returns {Array} - 分词结果数组
+     */
     function wordExplosion(text) {
       const regex =
         /[\u4e00-\u9fa5]|[a-zA-Z]+|[0-9]+|[^\u4e00-\u9fa5a-zA-Z0-9]+/g;
       return text.match(regex) || [];
     }
   
-    // 复制选中的单词
+    /**
+     * 复制选中的单词
+     * 该函数用于将选中的单词复制到剪贴板。
+     */
     function copySelectedWords() {
       const selectedWords = Array.from(
         popupContainer.querySelectorAll(".word-explosion-word.selected")
@@ -176,7 +206,10 @@
         });
     }
   
-    // 监听选择事件
+    /**
+     * 监听选择事件
+     * 该函数用于监听用户的选择事件，当用户选中文本时，显示按钮并定位到选中文本旁边。
+     */
     document.addEventListener("selectionchange", function () {
       const selection = window.getSelection();
       if (selection.toString().trim() !== "") {
@@ -186,7 +219,10 @@
       }
     });
   
-    // 监听按钮点击事件
+    /**
+     * 监听按钮点击事件
+     * 该函数用于监听按钮点击事件，当按钮被点击时，显示弹出窗口并隐藏按钮。
+     */
     function onButtonClick() {
       const selection = window.getSelection();
       const text = selection.toString();
@@ -195,7 +231,10 @@
       hideButton();
     }
   
-    // 初始化
+    /**
+     * 初始化
+     * 该函数用于初始化样式、按钮和弹出窗口，并添加事件监听器。
+     */
     function initialize() {
       createStyles();
       createButton();
@@ -203,7 +242,10 @@
       button.addEventListener("click", onButtonClick);
     }
   
-    // 点击其他地方时关闭弹窗
+    /**
+     * 点击其他地方时关闭弹窗
+     * 该函数用于监听点击事件，当点击事件发生在按钮或弹出窗口之外时，隐藏弹出窗口。
+     */
     document.addEventListener("click", function (event) {
       if (event.target !== button && !popupContainer.contains(event.target)) {
         hidePopup();
