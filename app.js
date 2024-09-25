@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         FLUENT风格文本分词大爆炸
+// @name         优化分词的FLUENT风格文本大爆炸
 // @namespace    http://tampermonkey.net/
-// @version      0.3
-// @description  选中文本后在右侧添加一个按钮，点击后显示分词结果，可以选择单词并复制（FLUENT风格）
+// @version      0.6
+// @description  使用优化的本地分词逻辑，采用紧凑的FLUENT风格UI
 // @match        *://*/*
 // @grant        none
 // ==/UserScript==
@@ -53,16 +53,22 @@
                 max-height: 80%;
                 overflow: auto;
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
             }
             .word-explosion-word {
-                margin: 5px;
-                padding: 8px 15px;
+                margin: 2px;
+                padding: 4px 8px;
                 background-color: rgba(255, 255, 255, 0.5);
                 border: none;
-                border-radius: 20px;
+                border-radius: 10px;
                 cursor: pointer;
                 transition: all 0.3s ease;
                 font-size: 14px;
+                display: inline-flex;
+                align-items: center;
             }
             .word-explosion-word.selected {
                 background-color: #0078D4;
@@ -130,10 +136,11 @@
     const copyButton = document.createElement("button");
     copyButton.textContent = "复制选中文本";
     copyButton.className = "word-explosion-copy";
+    copyButton.style.width = "100%";
     copyButton.addEventListener("click", copySelectedWords);
     popupContainer.appendChild(copyButton);
 
-    popupContainer.style.display = "block";
+    popupContainer.style.display = "flex";
   }
 
   // 隐藏弹出窗口
@@ -141,9 +148,11 @@
     popupContainer.style.display = "none";
   }
 
-  // 分词函数（简单实现，仅用空格和标点符号分割）
+  // 改进的分词函数
   function wordExplosion(text) {
-    return text.split(/[\s\p{P}]+/u).filter((word) => word.length > 0);
+    const regex =
+      /[\u4e00-\u9fa5]|[a-zA-Z]+|[0-9]+|[^\u4e00-\u9fa5a-zA-Z0-9]+/g;
+    return text.match(regex) || [];
   }
 
   // 复制选中的单词
@@ -152,7 +161,7 @@
       popupContainer.querySelectorAll(".word-explosion-word.selected")
     )
       .map((button) => button.textContent)
-      .join(" ");
+      .join("");
     navigator.clipboard
       .writeText(selectedWords)
       .then(() => {
@@ -183,10 +192,12 @@
   }
 
   // 初始化
-  createStyles();
-  createButton();
-  createPopup();
-  button.addEventListener("click", onButtonClick);
+  function initialize() {
+    createStyles();
+    createButton();
+    createPopup();
+    button.addEventListener("click", onButtonClick);
+  }
 
   // 点击其他地方时关闭弹窗
   document.addEventListener("click", function (event) {
@@ -194,4 +205,7 @@
       hidePopup();
     }
   });
+
+  // 启动初始化
+  initialize();
 })();
