@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         优化分词的FLUENT风格文本大爆炸
+// @name         文本大爆炸
 // @namespace    http://tampermonkey.net/
-// @version      0.6
-// @description  使用优化的本地分词逻辑，采用紧凑的FLUENT风格UI
+// @version      1
+// @description  仿照锤子的大爆炸，使用本地分词逻辑对选中文本进行分词
 // @match        *://*/*
 // @grant        none
 // ==/UserScript==
