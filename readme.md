@@ -10,8 +10,8 @@
 
 ## 截图
 
-![选中按钮](./assets/image01.png)
-![弹出窗口](./assets/image02.png)
+![选中按钮](./assets/image03.png)
+![弹出窗口](./assets/image04.png)
 
 ## 更新日志
 
@@ -27,6 +27,9 @@
 
 ## 参考
 
+- 分词逻辑使用了 [segmentit](https://github.com/huan/segmentit) 的分词库
+
+- 完成了代码主体的：
 <div style="text-align: center;">
   <img src="./assets/claude.svg" width="300px" alt="参考图片">
 </div>
