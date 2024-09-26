@@ -26,14 +26,14 @@
     style.textContent = `
               .word-explosion-button {
                   position: absolute; /* 修改为 absolute，方便根据选中区域定位 */
-                  background-color: rgba(217, 12, 12, 0.4);
+                  background-color: rgba(255,255,255, 0.4);
                   color: #000;
                   border: none;
                   border-radius: 50%;
                   cursor: pointer;
                   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                   font-size: 16px;
-                  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
                   transition: all 0.3s ease;
                   z-index: 9999;
                   width: 30px; /* 设置按钮的宽度 */
@@ -43,8 +43,10 @@
                   align-items: center;
               }
               .word-explosion-button:hover {
-                  background-color: rgba(217, 12, 12, 0.75);
-                  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+                  background-color: rgba(255,255,255, 0.75);
+                  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+                  transform: scale(1.1); /* 放大动画 */
+                  transition: transform 0.3s ease; /* 添加过渡效果 */
               }
               .word-explosion-popup {
                   position: fixed;
@@ -107,7 +109,7 @@
    */
   function createButton() {
     button = document.createElement("button");
-    button.textContent = "💥";
+    button.textContent = "🔨";
     button.className = "word-explosion-button";
     button.style.display = "none";
     document.body.appendChild(button);
@@ -197,7 +199,7 @@
     // 新的本地分词方法，导入第三方分词库
     // “我是一个测试方法”
     // [{"w": "我是","p": 0},{"w": "一个","p": 2097152},{"w": "测试","p": 1048576},{"w": "方法","p": 1048576}]
-    let result = segmentit.doSegment(text).map(item => item.w);
+    let result = segmentit.doSegment(text).map((item) => item.w);
     console.log(`分词结果：\n${result}`);
     return result || [];
   }
