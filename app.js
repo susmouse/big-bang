@@ -2,7 +2,7 @@
 // @name         文本大爆炸
 // @namespace    http://tampermonkey.net/
 // @author       突徒土兔
-// @version      2.0
+// @version      2.1
 // @description  仿照锤子的大爆炸，对选中文本进行分词
 // @match        *://*/*
 // @license      MIT
@@ -67,6 +67,19 @@
                   flex-wrap: wrap;
                   justify-content: center;
                   align-items: center;
+                  opacity: 0;
+                  animation: fadeIn 0.5s ease forwards;
+              }
+
+              @keyframes fadeIn {
+                  from {
+                      opacity: 0;
+                      transform: translate(-50%, -50%) scale(0.9);
+                  }
+                  to {
+                      opacity: 1;
+                      transform: translate(-50%, -50%) scale(1);
+                  }
               }
               .word-explosion-word {
                   margin: 2px;
