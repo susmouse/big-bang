@@ -1,10 +1,15 @@
 # 大爆炸 Big Bang
 
+---
+
 <div style="text-align: center;font-size: 50px;color: #666666">💥 BOOM~</div>
 
-一个仿照锤子手机的大爆炸功能的油猴脚本
+---
 
-[点此前往greasyfork下载安装](https://greasyfork.org/zh-CN/scripts/510130-%E6%96%87%E6%9C%AC%E5%A4%A7%E7%88%86%E7%82%B8)
+[![GitHub Star](https://img.shields.io/github/stars/susmouse/big-bang.svg?style=flat-square&label=Star&color=4285dd&logo=github)](https://github.com/susmouse/big-bang/)
+**如果好用的话，请去 Github 给个 ⭐ 吧！🥺🥺🥺**
+
+一个仿照锤子手机的大爆炸功能的油猴脚本
 
 ## 功能
 
@@ -12,8 +17,8 @@
 
 ## 截图
 
-![选中按钮](./assets/image03.png)
-![弹出窗口](./assets/image04.png)
+![选中按钮](https://s2.loli.net/2024/09/26/dYo9hxR3qeZrf8c.png)
+![弹出窗口](https://s2.loli.net/2024/09/26/DjoT3LfGdneacYx.png)
 
 ## 更新日志
 
@@ -27,12 +32,11 @@
 - ❌ 加入自定义词库功能，方便用户添加自己的词库
 - ✅ 实现鼠标左键拖动快速选中
 
-
 ## 参考
 
 - 分词逻辑使用了 [segmentit](https://github.com/linonetwo/segmentit) 的分词库
 
 - 完成了代码主体的：
 <div style="text-align: center;">
-  <img src="./assets/claude.svg" width="300px" alt="参考图片">
+  <img src="https://s2.loli.net/2024/09/25/NCuyiSR7A4YPqWU.png" width="300px" alt="claude">
 </div>
