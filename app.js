@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         文本大爆炸
 // @namespace    http://tampermonkey.net/
+// @author       突徒土兔
 // @version      3.0
 // @description  仿照锤子的大爆炸，对选中文本进行分词
 // @match        *://*/*
-// @license      MIT
+// @license      CC-BY-NC-4.0
 // @icon         https://s2.loli.net/2024/09/25/6PxlMHA7EZVqwsJ.png
 // @require      https://cdn.jsdelivr.net/npm/segmentit@2.0.3/dist/umd/segmentit.js
 // ==/UserScript==
@@ -12,12 +13,15 @@
 (function () {
   "use strict";
 
+  // 触发分词按钮
   let button = null;
+  // 弹出窗口
   let popupContainer = null;
+  // 分词器
   const segmentit = Segmentit.useDefault(new Segmentit.Segment());
-
-  // 拖动选择功能所需的变量
+  // 是否处于拖动
   let isDragging = false;
+  // 开始拖动的元素
   let startElement = null;
 
   /**
@@ -149,7 +153,7 @@
       const range = selection.getRangeAt(0);
       // 获取选中范围的边界矩形
       const rect = range.getBoundingClientRect();
-      // 设置按钮的顶部位置为选中范围的底部加上滚动条的偏移量，再加 5 像素
+      // 设置按钮的顶部位置为选中范围的底部加上滚动条的偏移量
       button.style.top = `${rect.bottom + window.scrollY + 5}px`;
       // 设置按钮的左侧位置为选中范围的左侧加上滚动条的偏移量
       button.style.left = `${rect.left + window.scrollX}px`;
