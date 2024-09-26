@@ -7,8 +7,6 @@
 // @license      MIT
 // @icon         https://s2.loli.net/2024/09/25/6PxlMHA7EZVqwsJ.png
 // @require      https://cdn.jsdelivr.net/npm/segmentit@2.0.3/dist/umd/segmentit.js
-// @downloadURL  https://update.greasyfork.org/scripts/510130/%E6%96%87%E6%9C%AC%E5%A4%A7%E7%88%86%E7%82%B8.user.js
-// @updateURL    https://update.greasyfork.org/scripts/510130/%E6%96%87%E6%9C%AC%E5%A4%A7%E7%88%86%E7%82%B8.meta.js
 // ==/UserScript==
 
 (function () {
@@ -250,14 +248,19 @@
     hideButton();
   }
 
+  let longPressTimer = null;
+  const longPressThreshold = 200; // 长按阈值，单位为毫秒
+
   /**
    * 处理鼠标按下事件
    */
   function onMouseDown(event) {
     if (event.target.classList.contains("word-explosion-word")) {
-      isDragging = true;
-      startElement = event.target;
-      startElement.classList.add("selected");
+      longPressTimer = setTimeout(() => {
+        isDragging = true;
+        startElement = event.target;
+        startElement.classList.add("selected");
+      }, longPressThreshold);
     }
   }
 
@@ -283,7 +286,8 @@
   /**
    * 处理鼠标松开事件
    */
-  function onMouseUp() {
+  function onMouseUp(event) {
+    clearTimeout(longPressTimer);
     isDragging = false;
     startElement = null;
   }
