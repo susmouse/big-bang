@@ -163,6 +163,13 @@
     popupContainer.addEventListener("mousedown", onMouseDown);
     document.addEventListener("mousemove", onMouseMove);
     document.addEventListener("mouseup", onMouseUp);
+
+    // 添加事件监听器，用于隐藏弹出窗口
+    document.addEventListener("click", (event) => {
+      if (!popupContainer.contains(event.target)&&!button.contains(event.target)) {
+        hidePopup();
+      }
+    });
   }
 
   /**
