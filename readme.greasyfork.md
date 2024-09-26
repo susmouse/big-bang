@@ -1,4 +1,6 @@
-# 大爆炸 Big Bang
+<div style="text-align: center;">
+<img src="https://socialify.git.ci/susmouse/big-bang/image?description=1&descriptionEditable=%E4%B8%80%E4%B8%AA%E4%BB%BF%E7%85%A7%E9%94%A4%E5%AD%90%E6%89%8B%E6%9C%BA%E7%9A%84%E5%88%86%E8%AF%8D%E5%A4%A7%E7%88%86%E7%82%B8%E5%8A%9F%E8%83%BD%E7%9A%84%E6%B2%B9%E7%8C%B4%E8%84%9A%E6%9C%AC&font=Inter&language=1&logo=https%3A%2F%2Fs2.loli.net%2F2024%2F09%2F25%2F6PxlMHA7EZVqwsJ.png&name=1&owner=1&pattern=Plus&theme=Dark" alt="big-bang" width="640" height="320" />
+</div>
 
 ---
 
@@ -7,7 +9,8 @@
 ---
 
 [![GitHub Star](https://img.shields.io/github/stars/susmouse/big-bang.svg?style=flat-square&label=Star&color=4285dd&logo=github)](https://github.com/susmouse/big-bang/)
-**如果好用的话，请去 Github 给个 ⭐ 吧！🥺🥺🥺**
+**如果好用的话，请去 Github 给个 ⭐ 吧！**
+<span style="font-size: small;color: #666666">🥺 求求你了</span>
 
 一个仿照锤子手机的大爆炸功能的油猴脚本
 
@@ -32,11 +35,11 @@
 - ❌ 加入自定义词库功能，方便用户添加自己的词库
 - ✅ 实现鼠标左键拖动快速选中
 
-## 参考
+## 贡献
 
 - 分词逻辑使用了 [segmentit](https://github.com/linonetwo/segmentit) 的分词库
 
-- 完成了代码主体的：
+- 协助完善了代码主体部分的：
 <div style="text-align: center;">
   <img src="https://s2.loli.net/2024/09/25/NCuyiSR7A4YPqWU.png" width="300px" alt="claude">
 </div>
