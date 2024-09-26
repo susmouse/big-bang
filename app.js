@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         文本大爆炸
 // @namespace    http://tampermonkey.net/
-// @version      2.1
+// @version      3.0
 // @description  仿照锤子的大爆炸，对选中文本进行分词
 // @match        *://*/*
 // @license      MIT
