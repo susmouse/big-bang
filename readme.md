@@ -6,12 +6,14 @@
 
 ---
 
-
 [👉 点此前往greasyfork下载安装](https://greasyfork.org/zh-CN/scripts/510130-%E6%96%87%E6%9C%AC%E5%A4%A7%E7%88%86%E7%82%B8)
+
+**推荐使用 [Violentmonkey 暴力猴](https://addons.mozilla.org/zh-CN/firefox/addon/violentmonkey)来安装脚本!!!**
+
 **如果好用的话，就请给我点个 ⭐ 吧！**
 <span style="font-size: small;color: #666666">🥺 求求你了</span>
 
-
+---
 
 ## 功能
 
