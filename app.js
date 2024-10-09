@@ -2,7 +2,7 @@
 // @name         文本大爆炸
 // @namespace    http://tampermonkey.net/
 // @author       突徒土兔
-// @version      3.0
+// @version      3.1
 // @description  仿照锤子的大爆炸，对选中文本进行分词
 // @match        *://*/*
 // @license      CC-BY-NC-4.0
@@ -89,6 +89,7 @@
               }
               .word-explosion-word {
                   margin: 2px;
+                  height: 30px; /* 让所有该类所有对象都有一样的高度 */
                   padding: 4px 8px;
                   background-color: rgba(255, 255, 255, 0.5);
                   border: none;
@@ -194,7 +195,10 @@
     // 添加事件监听器，用于隐藏弹出窗口
     document.addEventListener("click", (event) => {
       // 如果点击事件的目标不在弹出窗口内且不在按钮内，则隐藏弹出窗口
-      if (!popupContainer.contains(event.target) && !button.contains(event.target)) {
+      if (
+        !popupContainer.contains(event.target) &&
+        !button.contains(event.target)
+      ) {
         hidePopup();
       }
     });
@@ -259,10 +263,23 @@
   function wordExplosion(text) {
     // 使用 segmentit 库对文本进行分词，并提取分词结果
     let result = segmentit.doSegment(text).map((item) => item.w);
+    // 初始化一个空数组来存储带有空格的分词结果
+    let newResult = [];
+    // 分词过程中丢失了空格
+    // 遍历原始文本，插入空格
+    let textIndex = 0;
+    for (let i = 0; i < result.length; i++) {
+      newResult.push(result[i]);
+      textIndex += result[i].length;
+      while (textIndex < text.length && text[textIndex] === " ") {
+        newResult.push(" ");
+        textIndex++;
+      }
+    }
     // 在控制台输出分词结果
-    console.log(`分词结果：\n${result}`);
+    console.log(`分词结果：\n${newResult}`);
     // 返回分词结果数组，如果结果为空则返回空数组
-    return result || [];
+    return newResult || [];
   }
 
   /**
