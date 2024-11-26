@@ -6,12 +6,12 @@
 
 ---
 
-[👉 点此前往greasyfork下载安装](https://greasyfork.org/zh-CN/scripts/510130-%E6%96%87%E6%9C%AC%E5%A4%A7%E7%88%86%E7%82%B8)
+[👉 点此前往 greasyfork 下载安装](https://greasyfork.org/zh-CN/scripts/510130-%E6%96%87%E6%9C%AC%E5%A4%A7%E7%88%86%E7%82%B8)
 
-**推荐使用 [Violentmonkey 暴力猴](https://addons.mozilla.org/zh-CN/firefox/addon/violentmonkey)来安装脚本!!!**
+**该版本目前仅兼容使用 [Violentmonkey 暴力猴](https://addons.mozilla.org/zh-CN/firefox/addon/violentmonkey)来安装脚本。如果你使用的是 Tampermonkey，请前往[GITHUB 仓库的 Tampermonkey 分支](https://github.com/susmouse/big-bang/blob/Tampermonkey/app.js)获得 Tampermonkey 兼容版本**
 
-**如果好用的话，就请给我点个 ⭐ 吧！**
-<span style="font-size: small;color: #666666">🥺 求求你了</span>
+[![GitHub Star](https://img.shields.io/github/stars/susmouse/big-bang.svg?style=flat-square&label=Star&color=4285dd&logo=github)](https://github.com/susmouse/big-bang/) **如果好用的话，就请给我点个 ⭐ 吧！**
+<span style="font-size: x-small;color: #666666"><del>🥺 求求你了</del></span>
 
 ---
 
@@ -29,14 +29,16 @@
 - 2024/09/25 v1.0 第一版发布
 - 2024/09/26 v2.0 改进分词逻辑
 - 2024/09/26 v3.0 添加左键长按快速选中功能
+- 2024/10/09 v3.1 修复分词丢失空格的问题
 
 ## 未来计划
 
 - ✅ 导入第三方分词库，实现更好的分词效果~
-- ❌ 加入自定义词库功能，方便用户添加自己的词库
 - ✅ 实现鼠标左键拖动快速选中
 
 ## 贡献
+
+- [@lwjlwjlwjlwj](https://github.com/lwjlwjlwjlwj)提交了 Tampermonkey 兼容版本
 
 - 分词逻辑使用了 [segmentit](https://github.com/linonetwo/segmentit) 的分词库
 
